@@ -1,45 +1,32 @@
 var threeSum = function(nums) {
-    let match = function(array1,array2){
-        let counter = 0
-        for (let x = 0; x < array1.length; x++) {
-            if (array2.includes(array1[x])){
-                counter += 1
+    let answer = []
+    nums.sort((a,b) => a - b)
+    for (let i = 0; i < nums.length; i++) {
+        if (i > 0 && nums[i] === nums[i - 1]) continue;
+        const target = 0 - nums[i]
+        let left = i+1;
+        let right = nums.length-1
+        while (right > left) {
+            const sum = nums[right] + nums[left]
+            if (sum > target){
+                right--
+            }
+            else if (sum < target){
+                left ++
+            }
+            else{
+                answer.push([nums[i],nums[left],nums[right]]);
+                while(nums[left] === nums[left+1]) left++;
+                while(nums[right] === nums[right-1]) right--;
+                left++
+                right--
             }
         }
-        return counter === 3
     }
+    console.log(answer)
+    return answer
+}
+threeSum([-1,0,1,2,-1,-4,-2,-3,3,0,4])
 
-    console.log(match([ -1, 0, 1 ], [ -1, 1, 0 ] ))
-
-    let left = 0
-    let mid = 1
-    let truemid = 1
-    let arr = []
-    while(left < nums.length-2){
-        if (nums[left] == 0 && nums[mid] == 0 && nums[mid+1] == 0){
-            let inArray = arr.some(e => e.toString() == [nums[left],nums[mid],nums[mid+1]].toString())
-            if (!inArray){
-                arr.push([nums[left],nums[mid],nums[mid+1]])
-            }
-            mid += 1
-        }
-        if (nums[left]+nums[mid]+nums[mid+1] === 0 && (nums[left]!=nums[mid] ||nums[mid] != nums[mid+1])){
-            arr.push([nums[left],nums[mid],nums[mid+1]])
-            mid += 1
-        }
-        else if (mid > nums.length-2){
-            left += 1
-            truemid += 1
-            mid = truemid
-        }
-        else{
-            mid += 1
-        }
-    }
-    console.log(arr)
-    return arr
-};
-threeSum([-1,0,1,0])
-
-// let arr = [[0,0,0],[1,1,1]]
-// console.log(arr.some(e => e.toString() == [0,0,0].toString()))
+console.log([-1,0,1,2,-1,-4,-2,-3,3,0,4].sort())
+console.log([-1,0,1,2,-1,-4,-2,-3,3,0,4].sort((a,b) => a - b))
