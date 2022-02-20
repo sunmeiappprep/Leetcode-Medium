@@ -7,30 +7,55 @@
 
 
 var groupAnagrams = function(strs) {
-    hash = {}
-    arr = []
+    let temp = []
+    let arr = []
+    let hash = {}
     for (let i = 0; i < strs.length; i++) {
-        const element = strs[i].split("");
-        let grouping = (element.sort().join(""))
-        if (hash[grouping]){
-            
-        }else{
-            hash[grouping]=[] 
+        const word = strs[i].split("").sort().join("");
+        if (hash[word]){
+            hash[word].push(i)
         }
-        hash[grouping].push([i])
-        
+        else{
+            hash[word] = []
+            hash[word].push(i)
+        }
     }
     for (const key in hash) {
-            let temp = []
-            const grouping = hash[key];
-            for (let index = 0; index < grouping.length; index++) {
-                const single = grouping[index];
-                temp.push(strs[single])
-            
-            }
-            arr.push(temp)
-            temp = []
+        let single = hash[key]
+        for (let index = 0; index < single.length; index++) {
+            const idx = single[index];
+            temp.push(strs[idx])
+        }
+        arr.push(temp)
+        temp = []
     }
-    return (arr)
+    console.log(arr)
+    return arr
 }
 groupAnagrams(["eat","tea","tan","ate","nat","bat"])
+
+// hash = {}
+// arr = []
+// for (let i = 0; i < strs.length; i++) {
+//     const element = strs[i].split("");
+//     let grouping = (element.sort().join(""))
+//     if (hash[grouping]){
+        
+//     }else{
+//         hash[grouping]=[] 
+//     }
+//     hash[grouping].push([i])
+    
+// }
+// for (const key in hash) {
+//         let temp = []
+//         const grouping = hash[key];
+//         for (let index = 0; index < grouping.length; index++) {
+//             const single = grouping[index];
+//             temp.push(strs[single])
+        
+//         }
+//         arr.push(temp)
+//         temp = []
+// }
+// return (arr)
