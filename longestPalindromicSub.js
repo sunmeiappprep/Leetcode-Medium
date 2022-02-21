@@ -1,36 +1,36 @@
-var longestPalindrome = function(s) {
-    let hash = {}
-    for (let x = 0; x < s.length; x++) {
-        const char = s[x];
-        if (hash[char]){
-            hash[char].push(x)
-        }
-        else{
-            hash[char] = []
-            hash[char].push(x)
-        }
-    }
-    for (const key in hash) {
-        if (hash[key].length > 1) {
-            const element = hash[key];
-            for (let i = 0; i < element.length; i++) {
-                let l = 0
-                let r = 1
-                let stringForward = s.slice(element[l],element[r+1])
-                // let backward = stringForward.so
-                console.log(stringForward);
-            }
+//make a helper function that expands from given LEFT and RIGHT points
+//the function will keep expanding if s[l] and s[r] are the same
+//function will also compare the max vs temp
+//make a loop that that illrate thru the index , 
+//first call for expand mid is for odd nums
+//second call is for even nums
 
-            
+
+var longestPalindrome = function(s) {
+
+    let temp = ""
+    let max = ""
+
+    const expandfrommid = (left, right) => {
+        while((left >= 0 && right < s.length) && s[left] === s[right]){
+            temp = s.slice(left,right+1)
+            if (temp.length > max.length) max = temp
+            right++
+            left--
         }
     }
-    console.log(hash);
+
+    for (let i = 0; i < s.length; i++) {
+        expandfrommid(i-1,i+1)
+        expandfrommid(i,i+1)
+    }
+    return max
 };
 
-// console.log(longestPalindrome("racecar"));
-// console.log(longestPalindrome("racecar"));
+console.log(longestPalindrome("racecar"));
+console.log(longestPalindrome("racecar"));
 console.log(longestPalindrome("abb"));
-// console.log(longestPalindrome("dabab"));
-// console.log(longestPalindrome("ac"));
-// console.log(longestPalindrome("bb"));
+console.log(longestPalindrome("dabab"));
+console.log(longestPalindrome("ac"));
+console.log(longestPalindrome("bb"));
  
