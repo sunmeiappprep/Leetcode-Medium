@@ -5,27 +5,47 @@
 //index - indexLastSeen + 1 will give distance away from lastseen
 //indexLastSeen has to be at least 0
 var lengthOfLongestSubstring = function(s) {
-    let max = 0
     let hash = {}
-    let indexLastSeen = 0
+    let lowest = null
+
     for (let i = 0; i < s.length; i++) {
-        let char = [s[i]]
-        if (hash[char] !== null && hash[char] >= indexLastSeen){
-            //reset last seen to this
-            indexLastSeen = hash[char]+1
+        const char = s[i];
+        if (hash[char]){
+            hash[char] = hash[char]+1
         }
-        hash[char] = i
-        console.log(i,indexLastSeen,1)
-        max = Math.max(max,i - indexLastSeen + 1)
     }
-    return (max)
+
+    for (const key in hash) {
+        if (hash[key]) {
+            const num = hash[key];
+            if (lowest === null || lowest > num)
+                lowest = num
+        }
+    }
+   return (s.length-lowest)
+
+
+    // let max = 0
+    // let hash = {}
+    // let indexLastSeen = 0
+    // for (let i = 0; i < s.length; i++) {
+    //     let char = [s[i]]
+    //     if (hash[char] !== null && hash[char] >= indexLastSeen){
+    //         //reset last seen to this
+    //         indexLastSeen = hash[char]+1
+    //     }
+    //     hash[char] = i
+    //     console.log(i,indexLastSeen,1)
+    //     max = Math.max(max,i - indexLastSeen + 1)
+    // }
+    // return (max)
 };
 
-lengthOfLongestSubstring("wwww")
+lengthOfLongestSubstring("pwwkew")
 // console.log(3)
-// lengthOfLongestSubstring("dvdf")
+lengthOfLongestSubstring("dvdf")
 // console.log(3)
-// lengthOfLongestSubstring("tmmzuxt")
+lengthOfLongestSubstring("tmmzuxt")
 // console.log(5)
 
 // var lengthOfLongestSubstring = function(s) {
