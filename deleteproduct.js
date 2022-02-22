@@ -1,8 +1,14 @@
+//self solve
+//goal is to remove k amount from arr to find min unqiue items
+//convert arr into hash with count
+//sort that
+//irate the sort and k-element, if k turns negative start adding it to counter
+//math thing
+
+
 function deleteProducts(arr, k) {
-    // Write your code here \
     let hash = {}
     let count = 0
-    let current = 0
     for (let index = 0; index < arr.length; index++) {
         const element = arr[index];
         (hash[element]) ? hash[element]+=1 : hash[element]=1
@@ -10,28 +16,14 @@ function deleteProducts(arr, k) {
 
     let testing = Object.values(hash).sort((a,b) => a-b)
 
-    // console.log(testing)
-    // while (m >= 0){
-    //     let index = 0
-
-    //     return holder
-    // }
-
-
     for (let index = 0 ; index < testing.length; index++) {
         const element = testing[index];
-        // console.log(element)
         k -= element
-        // console.log(k);
-
         if (k < 0){
             count ++
-            // console.log(testing.length-a)
-            // return testing.length-a
         }
     }
     
-    // console.log(hash);
     return count
 }
 
