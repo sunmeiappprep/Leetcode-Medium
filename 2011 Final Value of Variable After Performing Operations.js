@@ -11,3 +11,5 @@ var finalValueAfterOperations = function(operations) {
     }
     return counter
 };
+
+
