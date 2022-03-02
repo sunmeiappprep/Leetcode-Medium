@@ -3,23 +3,23 @@
 
 var maxProfit = function(prices) {
     let max = 0
-    let l = 0
     let r = 1
+    let l = 0
     while (r < prices.length){
         if (prices[r] > prices[l]){
-            let diff = prices[r] - prices[l]
-            if (diff > max){
-                max = diff
+            if (prices[r]-prices[l] > max){
+                max = prices[r]-prices[l]
             }
-        }else{
+        }
+        else {
             l = r
         }
         r++
     }
-    console.log(max)
     return max
 }
-maxProfit([7,1,5,3,6,4])
+console.log(maxProfit([7,1,5,3,6,4]));
+ 
 
 
 // let max = 0
@@ -39,3 +39,20 @@ maxProfit([7,1,5,3,6,4])
 // console.log(max)
 // return max
 // };
+
+// let max = 0
+// let l = 0
+// let r = 1
+// while (r < prices.length){
+//     if (prices[r] > prices[l]){
+//         let diff = prices[r] - prices[l]
+//         if (diff > max){
+//             max = diff
+//         }
+//     }else{
+//         l = r
+//     }
+//     r++
+// }
+// console.log(max)
+// return max

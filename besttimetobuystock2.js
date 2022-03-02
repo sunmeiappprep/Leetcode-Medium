@@ -15,21 +15,24 @@
 
 
 var maxProfit = function(prices) {
-    let l = 0
+    let max = 0
     let r = 1
-    let array = []
+    let l = 0
     while (r < prices.length){
-        if (prices[l] > prices[r]){
-           l = r
+        if (prices[r] > prices[l]){
+            if (prices[r]-prices[l] > max){
+                max = prices[r]-prices[l]
+            }
         }
-        else if (prices[r] > prices[l]){
-            let diff = prices[r]-prices[l]
-            array.push(diff)
+        else {
+            l = r
         }
         r++
     }
-    console.log(array)    
-};
+    return max
+}
+console.log(maxProfit([7,1,5,3,6,4]));
+console.log(maxProfit([1,2,3,4,5]));
 
-maxProfit([7,1,5,3,6,4])
-maxProfit([1,2,3,4,5])
+
+
