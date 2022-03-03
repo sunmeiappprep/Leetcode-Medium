@@ -11,10 +11,12 @@ var productExceptSelf = function(nums) {
 
     for (let i = nums.length-1; i >= 0 ; i--) {
         const element = nums[i];
-        right = right*arr[i]
-        arr[i] = right
+        arr[i] = right*arr[i]
+        right *= element
+
     }
     console.log(arr)
+    return arr
 };
 console.log(productExceptSelf([1,2,3,4]))
 // console.log(productExceptSelf([-1,1,0,-3,3]))
